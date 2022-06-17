@@ -1,0 +1,8 @@
+﻿namespace BrownOrchid.Services.DWH.DTOs;
+
+public class RegisterBankEmployeeDto
+{
+    public string Email { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
+}

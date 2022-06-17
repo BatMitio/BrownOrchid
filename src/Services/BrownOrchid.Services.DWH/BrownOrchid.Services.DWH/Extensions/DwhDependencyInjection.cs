@@ -12,5 +12,7 @@ public static class DwhDependencyInjection
     {
         serviceCollection.AddTransient<IDwhDbContext, DwhDbContext>();
         serviceCollection.AddTransient<IDealerRepository, DealerRepository>();
+        serviceCollection.AddTransient<IBankEmployeeRepository, BankEmployeeRepository>();
+        serviceCollection.AddTransient<IPosTerminalRepository, PosTerminalRepository>();
     }
 }

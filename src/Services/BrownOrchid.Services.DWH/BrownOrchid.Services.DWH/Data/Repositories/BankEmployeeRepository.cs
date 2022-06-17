@@ -5,25 +5,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BrownOrchid.Services.DWH.Data.Repositories;
 
-public class DealerRepository : IDealerRepository
+public class BankEmployeeRepository : IBankEmployeeRepository
 {
     private IDwhDbContext _context;
 
-    public DealerRepository(IDwhDbContext context)
+    public BankEmployeeRepository(IDwhDbContext context)
     {
         _context = context;
     }
 
-    public async Task<Dealer?> SaveAsync(Dealer dealer)
+    public async Task<BankEmployee?> SaveAsync(BankEmployee employee)
     {
-        var result = _context.Dealers.Add(dealer);
+        var result = _context.BankEmployees.Add(employee);
         await _context.SaveChangesAsync();
         return result.Entity;
     }
 
-    public async Task<Dealer?> FindByUsernameAsync(string username)
+    public async Task<BankEmployee?> FindByUsernameAsync(string username)
     {
-        var dealer = await _context.Dealers.Where(d => d.UserName == username).FirstOrDefaultAsync();
-        return dealer;
+        return await _context.BankEmployees.Where(e => e.UserName == username).FirstOrDefaultAsync();
     }
 }

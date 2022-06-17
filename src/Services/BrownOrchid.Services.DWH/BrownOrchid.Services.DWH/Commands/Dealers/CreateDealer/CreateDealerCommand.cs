@@ -47,7 +47,7 @@ public class CreateDealerCommandHandler : IRequestHandler<CreateDealerCommand, A
         dealer.RegistrationDate = DateTime.Now;
         dealer.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-        await _repository.SaveDealerAsync(dealer);
+        await _repository.SaveAsync(dealer);
 
         return new ApiResponse("Dealer was successfully created!");
     }

@@ -17,4 +17,6 @@ public class DwhDbContext : DbContext, IDwhDbContext
     public DwhDbContext(DbContextOptions options) : base(options)
     {
     }
+    
+    
 }

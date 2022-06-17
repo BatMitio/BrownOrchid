@@ -1,34 +1,20 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using BrownOrchid.Common.Application.Jwt.Interfaces;
+﻿using BrownOrchid.Common.Application.Jwt.Interfaces;
 using BrownOrchid.Common.Domain.Types;
 using BrownOrchid.Services.DWH.Data.Repositories.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 
-namespace BrownOrchid.Services.DWH.Commands.Dealers.LoginDealer;
+namespace BrownOrchid.Services.DWH.Commands.BankEmployees.LoginBankEmployee;
 
-public class LoginDealerCommand : IRequest<ApiResponse<string>>
+public class LoginBankEmployeeCommand : IRequest<ApiResponse<string>>
 {
     public string Username { get; set; }
     public string Password { get; set; }
-
-    public LoginDealerCommand()
-    {
-    }
-
-    public LoginDealerCommand(string username, string password)
-    {
-        Username = username;
-        Password = password;
-    }
 }
 
-public class LoginDealerCommandHandler : IRequestHandler<LoginDealerCommand, ApiResponse<string>>
+public class LoginBankEmployeeCommandHandler : IRequestHandler<LoginBankEmployeeCommand, ApiResponse<string>>
 {
-    private IDealerRepository _repository;
+    private IBankEmployeeRepository _repository;
     private IConfiguration _configuration;
 
     private ITokenGenerator _tokenGenerator;
@@ -36,15 +22,14 @@ public class LoginDealerCommandHandler : IRequestHandler<LoginDealerCommand, Api
     //TODO: Set to an adequate value in production
     private const int ExpirationInMinutes = 3000;
 
-
-    public LoginDealerCommandHandler(IDealerRepository repository, IConfiguration configuration, ITokenGenerator tokenGenerator)
+    public LoginBankEmployeeCommandHandler(IBankEmployeeRepository repository, IConfiguration configuration, ITokenGenerator tokenGenerator)
     {
         _repository = repository;
         _configuration = configuration;
         _tokenGenerator = tokenGenerator;
     }
 
-    public async Task<ApiResponse<string>> Handle(LoginDealerCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResponse<string>> Handle(LoginBankEmployeeCommand request, CancellationToken cancellationToken)
     {
         var user = await _repository.FindByUsernameAsync(request.Username);
 

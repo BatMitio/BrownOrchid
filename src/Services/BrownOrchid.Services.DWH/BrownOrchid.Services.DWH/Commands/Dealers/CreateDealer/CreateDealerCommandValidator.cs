@@ -8,7 +8,7 @@ public class CreateDealerCommandValidator : AbstractValidator<CreateDealerComman
     public CreateDealerCommandValidator(IDealerRepository dealerRepository)
     {
         RuleFor(cmd => cmd.Username)
-            .MustAsync(async (username, _) => (await dealerRepository.FindByUsername(username) is null))
+            .MustAsync(async (username, _) => (await dealerRepository.FindByUsernameAsync(username) is null))
             .WithErrorCode("409")
             .WithMessage("Username not available for registration!");
     }

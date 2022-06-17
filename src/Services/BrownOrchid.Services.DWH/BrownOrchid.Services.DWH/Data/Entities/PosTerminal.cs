@@ -6,6 +6,10 @@ public class PosTerminal
 {
     [Key]
     public string TerminalId { get; set; }
-    [Required]
-    public string DealerId { get; set; }
+    public Dealer? Dealer { get; set; }
+
+    public PosTerminal()
+    {
+        TerminalId = Guid.NewGuid().ToString();
+    }
 }
