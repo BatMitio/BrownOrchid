@@ -38,6 +38,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Gateways.Portal
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BrownOrchid.Services.Clients", "BrownOrchid.Services.Clients", "{B3BB7B45-6DD7-4E7E-899F-2F63A41DC436}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Services.Clients", "src\Services\BrownOrchid.Services.Clients\BrownOrchid.Services.Clients\BrownOrchid.Services.Clients.csproj", "{3F9E068B-FF64-47E4-907B-8A32CC797E81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Services.Clients.Api", "src\Services\BrownOrchid.Services.Clients\BrownOrchid.Services.Clients.Api\BrownOrchid.Services.Clients.Api.csproj", "{54EED426-E840-456A-915E-E85E0995D450}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,8 @@ Global
 		{BB703C08-B7EE-43DA-AF74-CC761883728D} = {7BD16DFC-CCEA-4204-9241-916E6D8AD8FC}
 		{A0110D22-66BE-432F-9AC9-5051F4FC9651} = {7BD16DFC-CCEA-4204-9241-916E6D8AD8FC}
 		{B3BB7B45-6DD7-4E7E-899F-2F63A41DC436} = {86A8E2DA-AAD9-4B98-98FA-B669B0091DF0}
+		{3F9E068B-FF64-47E4-907B-8A32CC797E81} = {B3BB7B45-6DD7-4E7E-899F-2F63A41DC436}
+		{54EED426-E840-456A-915E-E85E0995D450} = {B3BB7B45-6DD7-4E7E-899F-2F63A41DC436}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5B4226DE-E235-456D-9EC4-A7187FAE4663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -104,5 +110,13 @@ Global
 		{A0110D22-66BE-432F-9AC9-5051F4FC9651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0110D22-66BE-432F-9AC9-5051F4FC9651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0110D22-66BE-432F-9AC9-5051F4FC9651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F9E068B-FF64-47E4-907B-8A32CC797E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9E068B-FF64-47E4-907B-8A32CC797E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9E068B-FF64-47E4-907B-8A32CC797E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9E068B-FF64-47E4-907B-8A32CC797E81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54EED426-E840-456A-915E-E85E0995D450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54EED426-E840-456A-915E-E85E0995D450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54EED426-E840-456A-915E-E85E0995D450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54EED426-E840-456A-915E-E85E0995D450}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
