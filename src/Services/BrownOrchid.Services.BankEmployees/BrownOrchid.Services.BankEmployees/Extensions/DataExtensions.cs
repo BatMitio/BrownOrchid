@@ -8,7 +8,7 @@ namespace BrownOrchid.Services.BankEmployees.Extensions;
 
 public static class DataExtensions
 {
-    public static void AddPersistence(this WebApplicationBuilder builder, string name = "Database")
+    public static void AddPersistence(this WebApplicationBuilder builder, string name = "EmployeeDb")
     {
         var connectionString = builder.Configuration.GetConnectionString(name);
         builder.Services.AddDbContext<BankEmployeesDbContext>(opt =>

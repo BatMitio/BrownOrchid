@@ -3,7 +3,7 @@ using BrownOrchid.Services.BankEmployees.Data.Persistence;
 using BrownOrchid.Services.DWH.Data.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace BrownOrchid.Services.BankEmployees.Worker;
+namespace BrownOrchid.Services.BankEmployees.Api;
 
 public class Worker : BackgroundService
 {

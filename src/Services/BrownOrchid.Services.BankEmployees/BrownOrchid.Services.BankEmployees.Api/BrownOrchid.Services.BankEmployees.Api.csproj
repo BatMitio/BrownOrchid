@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\BrownOrchid.Services.DWH\BrownOrchid.Services.DWH\BrownOrchid.Services.DWH.csproj" />
       <ProjectReference Include="..\BrownOrchid.Services.BankEmployees\BrownOrchid.Services.BankEmployees.csproj" />
     </ItemGroup>
 

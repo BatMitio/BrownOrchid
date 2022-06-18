@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(opt => opt.RootDirectory = "/Pages");
 builder.Services.AddServerSideBlazor();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorizationCore();

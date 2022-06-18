@@ -1,0 +1,129 @@
+﻿@page "/client/signup"
+@using System.ComponentModel.DataAnnotations
+@using BrownOrchid.Gateways.Portal.Providers
+@using BrownOrchid.Gateways.Portal.Services.Client.Interfaces
+
+@inject IClientService ClientService
+@inject TokenAuthenticationStateProvider StateProvider
+@inject NavigationManager NavigationManager
+
+
+<header class="masthead" style="background-image:url('/assets/img/intro-bg.jpg');">
+    <div class="intro-body">
+        <div class="container">
+            <section class="position-relative py-4 py-xl-5">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-md-8 col-xl-6 text-center mx-auto">
+                            <h2>SIGN UP</h2>
+                            <p class="w-lg-50">Please sign up with the needed information below in order to take advantage of the amazing features of our platform</p>
+                        </div>
+                    </div>
+                    <section class="position-relative py-4 py-xl-5">
+                        <div class="container">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="card mb-5">
+                                        <div class="card-body d-flex flex-column align-items-center">
+                                            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person">
+                                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+                                                </svg>
+                                            </div>
+                                            <EditForm Context="EditFormContext" Model="@DataModel" OnValidSubmit="@HandleFormSubmit" class="text-center" method="post">
+                                                <DataAnnotationsValidator/>
+                                                <ValidationSummary/>
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div>
+                                                            <div class="mb-3">
+                                                                <InputText @bind-Value="DataModel.Username" class="form-control" type="text" name="username" placeholder="Username"/>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <InputText @bind-Value="DataModel.Password" class="form-control" type="password" name="password" placeholder="Password"/>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <InputText @bind-Value="DataModel.RepeatPassword" class="form-control" type="password" name="repeatPassword" placeholder="Repeat password"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3">
+                                                            <InputText @bind-Value="DataModel.Email" class="form-control" type="email" name="email" placeholder="Email"/>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <InputText @bind-Value="DataModel.PhoneNumber" class="form-control" type="text" name="phone" placeholder="Phone number"/>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <InputText @bind-Value="DataModel.CardNumber" class="form-control" type="text" name="cardNumber" placeholder="Card number"/>
+                                                        </div>
+                                                    </div>
+                                                </div><button class="btn btn-primary d-block w-100" type="submit" style="background: var(--bs-primary);color: rgb(255,255,255);">SIgn up</button>
+                                            </EditForm>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </div>
+</header>
+
+@code {
+
+    public class FormData
+    {
+        [Required]
+        public string? Username { get; set; }
+
+        [Required]
+        public string? Password { get; set; }
+
+        [Required]
+        public string? RepeatPassword { get; set; }
+
+        [Required]
+        public string? Email { get; set; }
+
+        [Required]
+        public string? PhoneNumber { get; set; }
+
+        [Required]
+        public string? CardNumber { get; set; }
+    }
+
+    public FormData DataModel = new();
+    public string? Message { get; set; }
+
+    public async void HandleFormSubmit()
+    {
+        if(DataModel.Password != DataModel.RepeatPassword)
+            Error(new []{"Passwords don't match!"});
+        
+        var result = await ClientService.RegisterClientAsync(DataModel.Username, DataModel.Password, DataModel.Email, DataModel.PhoneNumber, DataModel.CardNumber);
+
+        if (result.IsValid)
+        {
+            var token = await ClientService.LoginClientAsync(DataModel.Username, DataModel.Password);
+            if (token.IsValid)
+            {
+                await StateProvider.SetAuthenticationStateAsync(token.Result);
+                NavigationManager.NavigateTo("/");
+                return;
+            }
+            Error(new []{"An error occured while trying to log in, please try to log in manualy!"});
+        }
+        Error(result.Errors);
+    }
+
+    private void Error(IEnumerable<string> errors)
+    {
+        Message = string.Join('\n', errors);
+        StateHasChanged();
+    }
+
+}

@@ -1,4 +1,7 @@
 ﻿@page "/employee/login"
+@layout MainLayout
+
+
 @using System.ComponentModel.DataAnnotations
 @using BrownOrchid.Gateways.Portal.Providers
 @using BrownOrchid.Gateways.Portal.Services.Employee.Interfaces
@@ -6,7 +9,6 @@
 @inject IEmployeeService EmployeeService
 @inject TokenAuthenticationStateProvider StateProvider
 @inject NavigationManager NavigationManager
-
 
 <header class="masthead" style="background-image:url('/assets/img/intro-bg.jpg');">
     <div class="intro-body">
@@ -74,7 +76,7 @@
         if (result.IsValid)
         {
             await StateProvider.SetAuthenticationStateAsync(result.Result);
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/", true);
             return;
         }
 

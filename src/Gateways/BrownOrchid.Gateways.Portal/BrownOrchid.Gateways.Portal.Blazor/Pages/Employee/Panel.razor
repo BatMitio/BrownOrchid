@@ -1,0 +1,145 @@
+﻿@page "/employee/panel"
+@layout MainLayout
+
+
+@using BrownOrchid.Gateways.Portal.Views.Dealer
+@using BrownOrchid.Gateways.Portal.Views.Discounts
+@using BrownOrchid.Services.App.Data.Entities
+
+<header class="masthead" style="background-image:url('/assets/img/intro-bg.jpg');">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 style="margin: 35px;">Dealers</h1>
+                    <div class="table-responsive" style="max-height: 600px;">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>E-mail</th>
+                                <th>Phone number</th>
+                                <th>Date registered</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for (int i = 0; i < Dealers.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Dealers[i].Id</td>
+                                    <td>@Dealers[i].Username</td>
+                                    <td>@Dealers[i].Email</td>
+                                    <td>@Dealers[i].PhoneNumber</td>
+                                    <td>@Dealers[i].DateRegistered.Date.ToString()</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1 style="margin: 35px;">Discounts</h1>
+                    <div class="table-responsive" style="max-height: 600px;">
+                        <table class="table">
+                            <thead style="color: rgb(255,255,255);">
+                            <tr>
+                                <th>Dealer Id</th>
+                                <th>Discount Id</th>
+                                <th>Amount</th>
+                                <th>Start date</th>
+                                <th>End date</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody style="color: rgb(255,255,255);">
+                            @for (int i = 0; i < Discounts.Count; i++)
+                            {
+                                <tr>
+                                    
+                                    <td>@Discounts[i].DealerId</td>
+                                    <td>@Discounts[i].DiscountId</td>
+                                    <td>@Discounts[i].Amount</td>
+                                    <td>@Discounts[i].StartDate.Date.ToString()</td>
+                                    <td>@Discounts[i].EndDate.Date.ToString()</td>
+                                    <td>
+                                        @if (Discounts[i].Status == Discount.DiscountStatusEnum.WAITING)
+                                        {
+                                            <button type="button" class="btn btn-warning">Waiting</button>
+                                        }
+                                        else
+                                        {
+                                            @Discounts[i].Status.ToString()
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1 style="margin: 35px;">Pos terminals</h1>
+                    <div class="table-responsive" style="max-height: 600px;">
+                        <table class="table">
+                            <thead style="color: rgb(255,255,255);">
+                            <tr>
+                                <th>Dealer Id</th>
+                                <th>Terminal Id</th>
+                            </tr>
+                            </thead>
+                            <tbody style="color: rgb(255,255,255);">
+                            <tr>
+                                <td>12132-15427-58961-58756-45325<br></td>
+                                <td>12132-15427-58961-58756-45325<br></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+@code {
+    // <td>12132-15427-58961-58756-45325</td>
+    // <td>dimitar</td>
+    // <td>dimitar.k.vasilev.04@gmail.com</td>
+    // <td>+359887703350</td>
+    // <td>02/02/2004</td>
+    public List<DealerEntryView> Dealers = new List<DealerEntryView>(new[]
+    {
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+    });
+    public List<DiscountEntryView> Discounts = new List<DiscountEntryView>(new[]
+    {
+        new DiscountEntryView() { DealerId = "12132-15427-58961-58756-45325", DiscountId = "12132-15427-58961-58756-45325", Amount = 25, StartDate = DateTime.Now, EndDate = DateTime.Now, Status = Discount.DiscountStatusEnum.ACTIVE},
+        new DiscountEntryView() { DealerId = "12132-15427-58961-58756-45325", DiscountId = "12132-15427-58961-58756-45325", Amount = 25, StartDate = DateTime.Now, EndDate = DateTime.Now, Status = Discount.DiscountStatusEnum.EXPIRED},
+        new DiscountEntryView() { DealerId = "12132-15427-58961-58756-45325", DiscountId = "12132-15427-58961-58756-45325", Amount = 25, StartDate = DateTime.Now, EndDate = DateTime.Now, Status = Discount.DiscountStatusEnum.WAITING},
+        new DiscountEntryView() { DealerId = "12132-15427-58961-58756-45325", DiscountId = "12132-15427-58961-58756-45325", Amount = 25, StartDate = DateTime.Now, EndDate = DateTime.Now, Status = Discount.DiscountStatusEnum.REJECTED},
+    });
+    public List<DealerEntryView> PosTerminals = new List<DealerEntryView>(new[]
+    {
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+        new DealerEntryView() { DateRegistered = DateTime.Now, Email = "dimitar.k.vasilev.04@gmail.com", Id = "12132-15427-58961-58756-45325", Username = "dimitar", PhoneNumber = "+359887703350" },
+    });
+
+    public void Approve(string discountId)
+    {
+        Console.WriteLine(discountId);
+    }
+
+}

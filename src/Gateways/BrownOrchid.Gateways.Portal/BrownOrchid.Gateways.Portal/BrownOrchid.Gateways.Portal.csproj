@@ -14,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Common\BrownOrchid.Common.Application\BrownOrchid.Common.Application.csproj" />
+      <ProjectReference Include="..\..\..\Services\BrownOrchid.Services.App\BrownOrchid.Services.App\BrownOrchid.Services.App.csproj" />
     </ItemGroup>
 
 </Project>
