@@ -28,7 +28,11 @@ public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand,
         var employee = await _repository.FindByUsernameAsync(request.Username);
         if (BCrypt.Net.BCrypt.Verify(request.Password, employee!.PasswordHash))
         {
-            return new ApiResponse<string?>(_tokenGenertor.GenerateToken(new[] { new Claim("role", "employee") }));
+            return new ApiResponse<string?>(_tokenGenertor.GenerateToken(new[]
+            {
+                new Claim("role", "employee"),
+                new Claim("id", employee.Id)
+            }));
         }
 
         return new ApiResponse<string?>(null, "Fail!", new[] { "Invalid credentials!" });
