@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>BrownOrchid.Gateways.Portal</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Common\BrownOrchid.Common.Application\BrownOrchid.Common.Application.csproj" />
+    </ItemGroup>
+
+</Project>

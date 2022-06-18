@@ -20,9 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Services.DWH.Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BrownOrchid.Services.App", "BrownOrchid.Services.App", "{34E07F55-4864-4E42-B631-35260B9F0A28}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BrownOrchid.Gateways.App", "BrownOrchid.Gateways.App", "{7BD16DFC-CCEA-4204-9241-916E6D8AD8FC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Gateways.App", "src\Gateways\BrownOrchid.Gateways.App\BrownOrchid.Gateways.App.csproj", "{4B34E1C0-D3C5-49BA-AA1E-B758A7CACF84}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BrownOrchid.Gateways.Portal", "BrownOrchid.Gateways.Portal", "{7BD16DFC-CCEA-4204-9241-916E6D8AD8FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Services.App", "src\Services\BrownOrchid.Services.App\BrownOrchid.Services.App\BrownOrchid.Services.App.csproj", "{1B4439B7-44D0-4D85-9FE6-8B3354EC8F6D}"
 EndProject
@@ -35,6 +33,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Services.BankEmployees.Api", "src\Services\BrownOrchid.Services.BankEmployees\BrownOrchid.Services.BankEmployees.Api\BrownOrchid.Services.BankEmployees.Api.csproj", "{11ECD1F0-7641-4E09-8F69-8D27A59F2BB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Services.BankEmployees.Worker", "src\Services\BrownOrchid.Services.BankEmployees\BrownOrchid.Services.BankEmployees.Worker\BrownOrchid.Services.BankEmployees.Worker.csproj", "{72A6569D-4A84-4DA1-BDCF-395C0B1E1903}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Gateways.Portal.Blazor", "src\Gateways\BrownOrchid.Gateways.Portal\BrownOrchid.Gateways.Portal.Blazor\BrownOrchid.Gateways.Portal.Blazor.csproj", "{BB703C08-B7EE-43DA-AF74-CC761883728D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrownOrchid.Gateways.Portal", "src\Gateways\BrownOrchid.Gateways.Portal\BrownOrchid.Gateways.Portal\BrownOrchid.Gateways.Portal.csproj", "{A0110D22-66BE-432F-9AC9-5051F4FC9651}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,13 +54,14 @@ Global
 		{2D207488-5E0C-413B-A526-6685F79E23DE} = {888C7CB5-44A6-4FEC-99EE-0615612403AD}
 		{34E07F55-4864-4E42-B631-35260B9F0A28} = {86A8E2DA-AAD9-4B98-98FA-B669B0091DF0}
 		{7BD16DFC-CCEA-4204-9241-916E6D8AD8FC} = {5D53FC42-9352-4B92-92CC-55AD577C4822}
-		{4B34E1C0-D3C5-49BA-AA1E-B758A7CACF84} = {7BD16DFC-CCEA-4204-9241-916E6D8AD8FC}
 		{1B4439B7-44D0-4D85-9FE6-8B3354EC8F6D} = {34E07F55-4864-4E42-B631-35260B9F0A28}
 		{BC423840-DF42-4166-BB78-0F85CE48285D} = {34E07F55-4864-4E42-B631-35260B9F0A28}
 		{DA2AA82B-6FE5-4563-B7A1-8283E165C3E2} = {86A8E2DA-AAD9-4B98-98FA-B669B0091DF0}
 		{56175A99-C231-4EFC-8540-26C84A2FECE5} = {DA2AA82B-6FE5-4563-B7A1-8283E165C3E2}
 		{11ECD1F0-7641-4E09-8F69-8D27A59F2BB2} = {DA2AA82B-6FE5-4563-B7A1-8283E165C3E2}
 		{72A6569D-4A84-4DA1-BDCF-395C0B1E1903} = {DA2AA82B-6FE5-4563-B7A1-8283E165C3E2}
+		{BB703C08-B7EE-43DA-AF74-CC761883728D} = {7BD16DFC-CCEA-4204-9241-916E6D8AD8FC}
+		{A0110D22-66BE-432F-9AC9-5051F4FC9651} = {7BD16DFC-CCEA-4204-9241-916E6D8AD8FC}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5B4226DE-E235-456D-9EC4-A7187FAE4663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -77,10 +80,6 @@ Global
 		{2D207488-5E0C-413B-A526-6685F79E23DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D207488-5E0C-413B-A526-6685F79E23DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D207488-5E0C-413B-A526-6685F79E23DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B34E1C0-D3C5-49BA-AA1E-B758A7CACF84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B34E1C0-D3C5-49BA-AA1E-B758A7CACF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B34E1C0-D3C5-49BA-AA1E-B758A7CACF84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B34E1C0-D3C5-49BA-AA1E-B758A7CACF84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B4439B7-44D0-4D85-9FE6-8B3354EC8F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B4439B7-44D0-4D85-9FE6-8B3354EC8F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B4439B7-44D0-4D85-9FE6-8B3354EC8F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,5 +100,13 @@ Global
 		{72A6569D-4A84-4DA1-BDCF-395C0B1E1903}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72A6569D-4A84-4DA1-BDCF-395C0B1E1903}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72A6569D-4A84-4DA1-BDCF-395C0B1E1903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB703C08-B7EE-43DA-AF74-CC761883728D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB703C08-B7EE-43DA-AF74-CC761883728D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB703C08-B7EE-43DA-AF74-CC761883728D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB703C08-B7EE-43DA-AF74-CC761883728D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0110D22-66BE-432F-9AC9-5051F4FC9651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0110D22-66BE-432F-9AC9-5051F4FC9651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0110D22-66BE-432F-9AC9-5051F4FC9651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0110D22-66BE-432F-9AC9-5051F4FC9651}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
