@@ -1,6 +1,7 @@
 ﻿using BrownOrchid.Services.Clients.Data.Entities;
 using BrownOrchid.Services.Clients.Data.Persistence;
 using BrownOrchid.Services.Clients.Data.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BrownOrchid.Services.Clients.Data.Repositories;
 
@@ -22,6 +23,6 @@ public class ClientRepository : IClientRepository
 
     public async Task<Client?> FindByUsernameAsync(string username)
     {
-        return await _context.Clients.FindAsync(username);
+        return await _context.Clients.Where(c => c.UserName == username).FirstOrDefaultAsync();
     }
 }

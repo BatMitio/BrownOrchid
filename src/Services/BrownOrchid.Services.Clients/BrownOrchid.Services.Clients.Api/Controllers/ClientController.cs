@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BrownOrchid.Services.Clients.Commands.LoginClientCommand;
 using BrownOrchid.Services.Clients.Commands.RegisterClientCommand;
 using BrownOrchid.Services.Clients.DTOs;
 using MediatR;
@@ -24,6 +25,19 @@ public class ClientController : ControllerBase
     {
         var command = _mapper.Map<RegisterClientCommand>(clientRegisterDto);
         var result = await _mediator.Send(command);
+
+        if (result.IsValid)
+            return Ok(result);
+        return BadRequest(result);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginClientDto loginClientDto)
+    {
+        var result = await _mediator.Send(new LoginClientCommand()
+        {
+            Username = loginClientDto.Username, Password = loginClientDto.Password
+        });
 
         if (result.IsValid)
             return Ok(result);
