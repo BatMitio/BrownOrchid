@@ -41,21 +41,7 @@ public class Worker : BackgroundService
                 }
             }
             
-            List<BankEmployee> employeesRegistered = dwhDbContext.BankEmployees.ToList();
-            foreach (var employee in employeesRegistered)
-            {
-                if ((await appDbContext.BankEmployees.FindAsync(employee.Id)) is null)
-                {
-                    await appDbContext.BankEmployees.AddAsync(employee, stoppingToken);
-                    await appDbContext.SaveChangesAsync(stoppingToken);
-                }
-                else
-                {
-                    appDbContext.Entry(await appDbContext.BankEmployees.FindAsync(employee.Id)).State = EntityState.Detached;
-                    appDbContext.BankEmployees.Update(employee);
-                    await appDbContext.SaveChangesAsync(stoppingToken);
-                }
-            }
+            
             
             List<PosTerminal> terminalsRegistered = dwhDbContext.PosTerminals.ToList();
             foreach (var terminal in terminalsRegistered)

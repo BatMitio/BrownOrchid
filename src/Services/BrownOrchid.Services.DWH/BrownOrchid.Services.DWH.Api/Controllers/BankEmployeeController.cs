@@ -30,15 +30,4 @@ public class BankEmployeeController : ControllerBase
             return Ok(result);
         return BadRequest(result);
     }
-    
-    [HttpPost]
-    public async Task<IActionResult> Login(LoginBankEmployeeDto loginBankEmployeeDto)
-    {
-        var command = _mapper.Map<LoginBankEmployeeCommand>(loginBankEmployeeDto);
-        var result = await _mediator.Send(command);
-
-        if (result.IsValid)
-            return Ok(result);
-        return BadRequest(result);
-    }
 }
