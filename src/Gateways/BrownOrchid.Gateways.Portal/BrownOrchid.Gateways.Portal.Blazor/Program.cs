@@ -1,10 +1,27 @@
+using BrownOrchid.Gateways.Portal.Providers;
+using BrownOrchid.Gateways.Portal.Services.Employee;
+using BrownOrchid.Gateways.Portal.Services.Employee.Interfaces;
+using Microsoft.AspNetCore.Components.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<TokenAuthenticationStateProvider, TokenAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider, TokenAuthenticationStateProvider>();
+
+builder.Services.AddHttpClient(builder.Configuration["Services:Employee:Client"], client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Services:Employee:Endpoint"]);
+});
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -19,6 +36,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
