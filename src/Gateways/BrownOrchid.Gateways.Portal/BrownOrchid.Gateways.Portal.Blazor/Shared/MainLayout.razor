@@ -1,3 +1,50 @@
-﻿@inherits LayoutComponentBase
+﻿@using BrownOrchid.Gateways.Portal.Providers
+@inherits LayoutComponentBase
 
+@inject TokenAuthenticationStateProvider AuthenticationStateProvider
+
+<nav class="navbar navbar-light navbar-expand-md" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#" style="position: absolute"></a>
+        <button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <a href="/">
+                <img class="img-fluid" data-aos="fade-up" data-aos-duration="1000" src="/assets/img/logo.png" style="width: 166px;">
+            </a>
+            <ul class="navbar-nav ms-auto">
+                <AuthorizeView Policy="Employee">
+                    <li class="nav-item nav-link">
+                        <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/employee/panel">Panel</a>
+                    </li>
+                </AuthorizeView>
+                <AuthorizeView Policy="Employee">
+                    <li class="nav-item nav-link">
+                        <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/employee/panel">Panel</a>
+                    </li>
+                </AuthorizeView>
+                <AuthorizeView Policy="Employee">
+                    <li class="nav-item nav-link">
+                        <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/employee/panel">Panel</a>
+                    </li>
+                </AuthorizeView>
+
+                <AuthorizeView>
+                    <NotAuthorized>
+                        <li class="nav-item nav-link">
+                            <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/dealer/login">Dealer</a>
+                        </li>
+                        <li class="nav-item nav-link">
+                            <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/employee/login">Employee</a>
+                        </li>
+                        <li class="nav-item nav-link">
+                            <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/client/login">Client</a>
+                        </li>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </ul>
+        </div>
+    </div>
+</nav>
 @Body

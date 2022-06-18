@@ -19,6 +19,12 @@ builder.Services.AddHttpClient(builder.Configuration["Services:Employee:Client"]
     client.BaseAddress = new Uri(builder.Configuration["Services:Employee:Endpoint"]);
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Employee", policy => 
+        policy.RequireClaim("role", "employee"));
+});
+
 var app = builder.Build();
 
 
