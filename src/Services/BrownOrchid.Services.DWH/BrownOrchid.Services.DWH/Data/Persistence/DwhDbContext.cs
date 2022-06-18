@@ -1,4 +1,4 @@
-﻿using BrownOrchid.Services.DWH.Data.Entities;
+﻿using BrownOrchid.Common.Domain.Entities;
 using BrownOrchid.Services.DWH.Data.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +14,7 @@ public class DwhDbContext : DbContext, IDwhDbContext
     {
     }
 
-    public DwhDbContext(DbContextOptions options) : base(options)
+    public DwhDbContext(DbContextOptions<DwhDbContext> options) : base(options)
     {
     }
     

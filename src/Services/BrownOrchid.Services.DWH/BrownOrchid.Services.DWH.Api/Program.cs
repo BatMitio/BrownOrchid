@@ -1,7 +1,6 @@
-using AutoMapper;
 using BrownOrchid.Common.Application;
 using BrownOrchid.Common.Application.Extensions;
-using BrownOrchid.Services.DWH.Data.Entities;
+using BrownOrchid.Services.DWH.Commands.BankEmployees.CreateBankEmployee;
 using BrownOrchid.Services.DWH.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.AddPersistence();
 
-builder.Services.AddApplication(new[] { typeof(Dealer).Assembly });
+builder.Services.AddApplication(new[] { typeof(CreateBankEmployeeCommand).Assembly });
 builder.Services.AddDwhDependencyInjection();
 builder.AddSecurity();
 

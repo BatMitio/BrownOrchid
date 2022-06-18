@@ -1,4 +1,4 @@
-﻿using BrownOrchid.Services.DWH.Data.Entities;
+﻿using BrownOrchid.Common.Domain.Entities;
 using BrownOrchid.Services.DWH.Data.Persistence;
 using BrownOrchid.Services.DWH.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;

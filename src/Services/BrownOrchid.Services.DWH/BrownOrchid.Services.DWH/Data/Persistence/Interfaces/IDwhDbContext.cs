@@ -1,4 +1,4 @@
-﻿using BrownOrchid.Services.DWH.Data.Entities;
+﻿using BrownOrchid.Common.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 

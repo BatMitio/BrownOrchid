@@ -1,4 +1,4 @@
-﻿using BrownOrchid.Services.DWH.Data.Entities;
+﻿using BrownOrchid.Common.Domain.Entities;
 
 namespace BrownOrchid.Services.DWH.Data.Repositories.Interfaces;
 

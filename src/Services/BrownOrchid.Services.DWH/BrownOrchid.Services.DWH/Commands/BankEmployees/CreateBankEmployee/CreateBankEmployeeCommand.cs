@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BrownOrchid.Common.Domain.Types;
-using BrownOrchid.Services.DWH.Data.Entities;
+using BrownOrchid.Common.Domain.Entities;
 using BrownOrchid.Services.DWH.Data.Repositories.Interfaces;
 using MediatR;
 
