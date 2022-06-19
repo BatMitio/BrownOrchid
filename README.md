@@ -2,7 +2,7 @@
 An inovative microservice architecture solution for saving money on the go
 
 ## Built using ASP.NET Core
-The project is fully based upon ASP.NET Core 
+The project is fully based upon ASP.NET Core with EF Core and Blazor server side rendering
 
 ## Usage
 To use the web application you need to run all 
