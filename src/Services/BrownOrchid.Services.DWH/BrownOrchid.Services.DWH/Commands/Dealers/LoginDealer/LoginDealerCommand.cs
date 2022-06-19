@@ -1,12 +1,7 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using BrownOrchid.Common.Application.Jwt.Interfaces;
+﻿using BrownOrchid.Common.Application.Jwt.Interfaces;
 using BrownOrchid.Common.Domain.Types;
 using BrownOrchid.Services.DWH.Data.Repositories.Interfaces;
 using MediatR;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 
 namespace BrownOrchid.Services.DWH.Commands.Dealers.LoginDealer;
 
@@ -29,18 +24,11 @@ public class LoginDealerCommand : IRequest<ApiResponse<string>>
 public class LoginDealerCommandHandler : IRequestHandler<LoginDealerCommand, ApiResponse<string>>
 {
     private IDealerRepository _repository;
-    private IConfiguration _configuration;
-
     private ITokenGenerator _tokenGenerator;
 
-    //TODO: Set to an adequate value in production
-    private const int ExpirationInMinutes = 3000;
-
-
-    public LoginDealerCommandHandler(IDealerRepository repository, IConfiguration configuration, ITokenGenerator tokenGenerator)
+    public LoginDealerCommandHandler(IDealerRepository repository, ITokenGenerator tokenGenerator)
     {
         _repository = repository;
-        _configuration = configuration;
         _tokenGenerator = tokenGenerator;
     }
 
