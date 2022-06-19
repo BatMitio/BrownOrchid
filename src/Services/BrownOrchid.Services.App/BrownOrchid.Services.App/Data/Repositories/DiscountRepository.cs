@@ -38,6 +38,6 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<List<DiscountView>> FIndAllAsync()
     {
-        return (await _context.Discounts.ToListAsync()).Select(d => _mapper.Map<DiscountView>(d)).ToList();
+        return (await _context.Discounts.Include(d => d.Dealer).ToListAsync()).Select(d => _mapper.Map<DiscountView>(d)).ToList();
     }
 }

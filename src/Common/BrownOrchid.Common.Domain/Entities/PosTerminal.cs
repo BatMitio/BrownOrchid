@@ -6,7 +6,7 @@ public class PosTerminal
 {
     [Key]
     public string TerminalId { get; set; }
-    public Dealer? Dealer { get; set; }
+    public string DealerId { get; set; }
 
     public PosTerminal()
     {

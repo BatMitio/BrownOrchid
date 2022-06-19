@@ -25,8 +25,10 @@ public class QueryActiveDiscountsHandler : IRequestHandler<QueryActiveDiscounts,
 
     public async Task<List<DiscountView>> Handle(QueryActiveDiscounts request, CancellationToken cancellationToken)
     {
-        return await _context.Discounts.Where(d => d.DiscountStatus == Discount.DiscountStatusEnum.ACTIVE)
+        List<Discount> discounts =
+            await _context.Discounts.Include(d => d.Dealer).Where(d => d.DiscountStatus == Discount.DiscountStatusEnum.ACTIVE).ToListAsync();
+        return discounts
             .Select(d => _mapper.Map<DiscountView>(d))
-            .ToListAsync();
+            .ToList();
     }
 }

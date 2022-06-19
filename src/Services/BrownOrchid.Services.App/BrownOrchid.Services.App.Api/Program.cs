@@ -22,29 +22,12 @@ builder.AddSecurity();
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Dealer", policy => policy.RequireClaim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "dealer"));
-    options.AddPolicy("Employee", policy => policy.RequireClaim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "employee"));
+    options.AddPolicy("Dealer",
+        policy => policy.RequireClaim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "dealer"));
+    options.AddPolicy("Employee",
+        policy => policy.RequireClaim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", "employee"));
 });
 
-IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((hostContext, services) =>
-    {
-        //
-        //App db
-        var appOptions = new DbContextOptionsBuilder<AppDbContext>();
-        appOptions.UseSqlServer(builder.Configuration.GetConnectionString("AppDb"));
-        services.AddTransient(d => new AppDbContext(appOptions.Options));
-        
-        //DWH db
-        var dwhOptions = new DbContextOptionsBuilder<DwhDbContext>();
-        dwhOptions.UseSqlServer(builder.Configuration.GetConnectionString("DwhDb"));
-        services.AddTransient(d => new DwhDbContext(dwhOptions.Options));
-        
-        services.AddHostedService<Worker>();
-    })
-    .Build();
-
-host.RunAsync();
 
 var app = builder.Build();
 
@@ -58,5 +41,27 @@ if (app.Environment.IsDevelopment())
 app.EnsureDatabaseCreated();
 app.UseSecurity();
 app.MapControllers();
+
+
+
+IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
+    {
+        //
+        //App db
+        var appOptions = new DbContextOptionsBuilder<AppDbContext>();
+        appOptions.UseSqlServer(builder.Configuration.GetConnectionString("AppDb"));
+        services.AddTransient(d => new AppDbContext(appOptions.Options));
+
+        //DWH db
+        var dwhOptions = new DbContextOptionsBuilder<DwhDbContext>();
+        dwhOptions.UseSqlServer(builder.Configuration.GetConnectionString("DwhDb"));
+        services.AddTransient(d => new DwhDbContext(dwhOptions.Options));
+
+        services.AddHostedService<Worker>();
+    })
+    .Build();
+
+host.RunAsync();
 
 app.Run();

@@ -1,4 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@using BrownOrchid.Gateways.Portal.Providers
+@inherits LayoutComponentBase
+@inject TokenAuthenticationStateProvider StateProvider
+@inject NavigationManager NavigationManager
+
 
 <nav class="navbar navbar-light navbar-expand-md" id="mainNav">
     <div class="container">
@@ -16,14 +20,14 @@
                         <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/employee/panel">Panel</a>
                     </li>
                 </AuthorizeView>
-                <AuthorizeView Policy="Employee">
+                <AuthorizeView Policy="Client">
                     <li class="nav-item nav-link">
-                        <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/employee/panel">Panel</a>
+                        <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/client/panel">Panel</a>
                     </li>
                 </AuthorizeView>
-                <AuthorizeView Policy="Employee">
+                <AuthorizeView Policy="Dealer">
                     <li class="nav-item nav-link">
-                        <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/employee/panel">Panel</a>
+                        <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="/dealer/panel">Panel</a>
                     </li>
                 </AuthorizeView>
 
@@ -40,8 +44,25 @@
                         </li>
                     </NotAuthorized>
                 </AuthorizeView>
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item nav-link">
+                            <a class="nav-link" data-aos="fade-up" data-aos-duration="1000" href="#" @onclick="Logout">Logout</a>
+                        </li>
+                    </Authorized>
+                </AuthorizeView>
             </ul>
         </div>
     </div>
 </nav>
 @Body
+
+@code {
+
+    public async Task Logout()
+    {
+        await StateProvider.SetAuthenticationStateAsync(null);
+        NavigationManager.NavigateTo("/", true);
+    }
+
+}

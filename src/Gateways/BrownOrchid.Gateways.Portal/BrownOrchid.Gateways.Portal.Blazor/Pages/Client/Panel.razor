@@ -1,5 +1,8 @@
 ﻿@page "/client/panel"
-
+@using BrownOrchid.Gateways.Portal.Services.Dealer.Interfaces
+@using BrownOrchid.Gateways.Portal.Views.Discounts
+@using BrownOrchid.Services.App.Data.Views
+@inject IDealerService DealerService
 
 <header class="masthead" style="background-image:url('/assets/img/intro-bg.jpg');">
         <div class="intro-body">
@@ -22,156 +25,22 @@
                                     </tr>
                                 </thead>
                                 <tbody style="color: rgb(255,255,255);">
+                                @* <tr> *@
+                                @*     <td>Bace pepi</td> *@
+                                @*     <td>25</td> *@
+                                @*     <td>02/02/2004</td> *@
+                                @*     <td>02/02/2005</td> *@
+                                @* </tr> *@
+                                
+                                @foreach (var discount in DiscountViews)
+                                {
                                     <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
+                                        <td>@discount.DealerName</td>
+                                        <td>@discount.Amount</td>
+                                        <td>@discount.StartDate</td>
+                                        <td>@discount.EndDate</td>
                                     </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bace pepi</td>
-                                        <td>25</td>
-                                        <td>02/02/2004</td>
-                                        <td>02/02/2005</td>
-                                    </tr>
+                                }
                                 </tbody>
                             </table>
                         </div>
@@ -197,5 +66,11 @@
     </header>
 
 @code {
-    
+    public List<DiscountView> DiscountViews = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        DiscountViews = await DealerService.GetAvailableDiscounts();
+        StateHasChanged();
+    }
 }

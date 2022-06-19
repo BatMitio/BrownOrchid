@@ -5,6 +5,7 @@ namespace BrownOrchid.Gateways.Portal.Views.Discounts;
 public class DiscountEntryView
 {
     public string DealerId { get; set; }
+    public string DealerName { get; set; }
     public string DiscountId { get; set; }
     public int Amount { get; set; }
     public DateTime StartDate { get; set; }

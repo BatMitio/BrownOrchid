@@ -20,6 +20,22 @@ builder.Services.AddApplication(new[] { typeof(BankEmployeesDependencyInjection)
 builder.Services.AddBankEmployeesDependencyInjection();
 builder.AddSecurity();
 
+
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.EnsureDatabaseCreated();
+app.UseSecurity();
+app.MapControllers();
+
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
@@ -38,19 +54,5 @@ IHost host = Host.CreateDefaultBuilder(args)
     .Build();
 
 host.RunAsync();
-
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.EnsureDatabaseCreated();
-app.UseSecurity();
-app.MapControllers();
 
 app.Run();

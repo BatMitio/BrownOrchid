@@ -1,4 +1,8 @@
 ﻿@page "/dealer/panel"
+@using BrownOrchid.Gateways.Portal.Services.Dealer.Interfaces
+
+@inject IDealerService DealerService
+@inject NavigationManager NavigationManager
 
 <header class="masthead" style="background-image:url('/assets/img/intro-bg.jpg');">
 <div class="intro-body">
@@ -192,7 +196,7 @@
         <div class="card mb-5">
             <div class="card-body p-sm-5">
                 <h2 class="text-center mb-4" style="color: rgb(0,0,0);">Discount</h2>
-                <form method="post">
+                <EditForm Model="@DataModel" Context="EditFormContext" OnValidSubmit="@HandleFormSubmit">
                     <div class="mb-3" style="--bs-primary-rgb: 60,0,154;">
                         <label class="form-label" style="color: rgb(0,0,0);">Amount</label><input class="form-control" type="number" id="name-2" name="amount" placeholder="Amount" step="1" min="0" max="100" value="0" style="--bs-primary-rgb: 0,0,0;">
                     </div>
@@ -205,7 +209,7 @@
                     <div>
                         <button class="btn btn-primary d-block w-100" type="submit" style="background: var(--bs-primary);border-color: var(--bs-primary);color: rgb(255,255,255);">Send </button><button class="btn btn-primary d-block w-100" type="submit" style="background: var(--bs-primary);border-color: var(--bs-primary);color: rgb(255,255,255);">Cancel</button>
                     </div>
-                </form>
+                </EditForm>
             </div>
         </div>
     </div>
@@ -216,5 +220,23 @@
 </header>
 
 @code {
+    public class FormData
+    {
+        public int Amount { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+    }
+
+    public FormData DataModel = new();
+    
+    public async void HandleFormSubmit()
+    {
+        var result = await DealerService.CreateDiscount(DataModel.Amount, DataModel.StartDate, DataModel.EndDate);
+
+        if (result.IsValid)
+        {
+            NavigationManager.NavigateTo("/dealer/panel", true);
+        }
+    }
 
 }

@@ -10,6 +10,10 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<Dealer, DealerView>();
-        CreateMap<Discount, DiscountView>();
+        CreateMap<Discount, DiscountView>()
+            .ForMember(dv => dv.DealerId, 
+                opt => opt.MapFrom(src => src.Dealer.Id))
+            .ForMember(dv => dv.DealerName,
+                opt => opt.MapFrom(src => src.Dealer.UserName));
     }
 }

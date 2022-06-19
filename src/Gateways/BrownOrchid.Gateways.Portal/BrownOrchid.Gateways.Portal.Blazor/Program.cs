@@ -1,4 +1,8 @@
 using BrownOrchid.Gateways.Portal.Providers;
+using BrownOrchid.Gateways.Portal.Services.Client;
+using BrownOrchid.Gateways.Portal.Services.Client.Interfaces;
+using BrownOrchid.Gateways.Portal.Services.Dealer;
+using BrownOrchid.Gateways.Portal.Services.Dealer.Interfaces;
 using BrownOrchid.Gateways.Portal.Services.Employee;
 using BrownOrchid.Gateways.Portal.Services.Employee.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -11,6 +15,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IDealerService, DealerService>();
 builder.Services.AddScoped<TokenAuthenticationStateProvider, TokenAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider, TokenAuthenticationStateProvider>();
 
@@ -19,10 +25,24 @@ builder.Services.AddHttpClient(builder.Configuration["Services:Employee:Client"]
     client.BaseAddress = new Uri(builder.Configuration["Services:Employee:Endpoint"]);
 });
 
+builder.Services.AddHttpClient(builder.Configuration["Services:Client:Client"], client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Services:Client:Endpoint"]);
+});
+
+builder.Services.AddHttpClient(builder.Configuration["Services:App:Client"], client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Services:App:Endpoint"]);
+});
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Employee", policy => 
         policy.RequireClaim("role", "employee"));
+    options.AddPolicy("Dealer", policy => 
+        policy.RequireClaim("role", "dealer"));
+    options.AddPolicy("Client", policy => 
+        policy.RequireClaim("role", "client"));
 });
 
 var app = builder.Build();

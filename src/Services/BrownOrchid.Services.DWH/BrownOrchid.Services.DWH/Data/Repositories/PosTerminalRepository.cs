@@ -23,7 +23,6 @@ public class PosTerminalRepository : IPosTerminalRepository
 
     public async Task<PosTerminal?> UpdateAsync(PosTerminal terminal)
     {
-        _context.Entry(terminal.Dealer).State = EntityState.Unchanged;
         var result = _context.PosTerminals.Update(terminal);
         
         await _context.SaveChangesAsync();

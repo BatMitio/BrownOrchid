@@ -24,13 +24,11 @@ public class CreatePosTerminalCommandHandler : IRequestHandler<CreatePosTerminal
 
     public async Task<ApiResponse> Handle(CreatePosTerminalCommand request, CancellationToken cancellationToken)
     {
-        var result = await _repository.SaveAsync(new PosTerminal());
+        var result = await _repository.SaveAsync(new PosTerminal() 
+            { DealerId = (await _dealerRepository.FindByUsernameAsync(request.DealerUsername)).Id});
         
         if (request is null)
             return new ApiResponse("An error occured saving the pos terminal!", new[] { "The terminal could not be saved!" });
-        
-        result.Dealer = await _dealerRepository.FindByUsernameAsync(request.DealerUsername);
-        await _repository.UpdateAsync(result);
         
         return new ApiResponse("Successfully saved the terminal!");
     }

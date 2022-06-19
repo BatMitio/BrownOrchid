@@ -1,16 +1,16 @@
 ﻿using BrownOrchid.Common.Domain.Entities;
 using BrownOrchid.Services.App.Data.Persistence;
+using BrownOrchid.Services.App.Data.Views;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace BrownOrchid.Services.App.Queries.QueryPosTerminals;
 
-public class QueryPosTerminals : IRequest<List<PosTerminal>>
+public class QueryPosTerminals : IRequest<List<PosTerminalView>>
 {
-    
 }
 
-public class QueryPosTerminalsHandler : IRequestHandler<QueryPosTerminals, List<PosTerminal>>
+public class QueryPosTerminalsHandler : IRequestHandler<QueryPosTerminals, List<PosTerminalView>>
 {
     private AppDbContext _context;
 
@@ -19,8 +19,11 @@ public class QueryPosTerminalsHandler : IRequestHandler<QueryPosTerminals, List<
         _context = context;
     }
 
-    public async Task<List<PosTerminal>> Handle(QueryPosTerminals request, CancellationToken cancellationToken)
+    public async Task<List<PosTerminalView>> Handle(QueryPosTerminals request, CancellationToken cancellationToken)
     {
-        return await _context.PosTerminals.ToListAsync();
+        List<PosTerminal> terminals = await _context.PosTerminals.ToListAsync();
+        return terminals
+            .Select(t => new PosTerminalView() { DealerId = t.DealerId, TerminalId = t.TerminalId })
+            .ToList();
     }
 }

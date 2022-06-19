@@ -42,7 +42,7 @@ public class LoginClientCommandHandler : IRequestHandler<LoginClientCommand, Api
         if (BCrypt.Net.BCrypt.Verify(request.Password, client.PasswordHash))
         {
             return new ApiResponse<string?>(
-                _tokenGenerator.GenerateToken(new[] { new Claim("role", "Client") }));
+                _tokenGenerator.GenerateToken(new[] { new Claim("role", "client") }));
         }
 
         return new ApiResponse<string?>(null, "Fail", new[] { "Incorrect credentials!" });
