@@ -72,4 +72,13 @@ public class DiscountController : ControllerBase
         var result = await _mediator.Send(query);
         return Ok(result);
     }
+    
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    public async Task<IActionResult> AllActive()
+    {
+        var query = new QueryActiveDiscounts();
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
 }
