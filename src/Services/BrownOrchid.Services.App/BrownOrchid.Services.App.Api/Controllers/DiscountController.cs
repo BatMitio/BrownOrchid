@@ -3,6 +3,7 @@ using BrownOrchid.Common.Domain.Types;
 using BrownOrchid.Services.App.Commands.ApproveDiscountCommand;
 using BrownOrchid.Services.App.Commands.CreateDiscountCommand;
 using BrownOrchid.Services.App.DTOs;
+using BrownOrchid.Services.App.Queries.QueryDiscounts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,14 +20,14 @@ public class DiscountController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+
     [HttpPost]
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "Dealer")]
     public async Task<IActionResult> Create(CreateDiscountDto createDiscountDto)
     {
         var dealerId = User.Claims.FirstOrDefault(c => c.Type == "id");
         if (dealerId is null)
-            return BadRequest(new ApiResponse("Fail", new [] {"No id in jwt!"}));
+            return BadRequest(new ApiResponse("Fail", new[] { "No id in jwt!" }));
         var command = new CreateDiscountCommand()
         {
             Amount = createDiscountDto.Amount,
@@ -52,5 +53,14 @@ public class DiscountController : ControllerBase
         if (result.IsValid)
             return Ok(result);
         return BadRequest(result);
+    }
+
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "Bearer", Policy = "Employee")]
+    public async Task<IActionResult> All()
+    {
+        var query = new QueryDiscounts();
+        var result = await _mediator.Send(query);
+        return Ok(result);
     }
 }
